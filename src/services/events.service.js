@@ -26,6 +26,12 @@ const ifWithinWorkHours = (date) => {
 }
 
 async function getEvents(startDate, endDate, timezone = TIMEZONE) {
+    if (typeof startDate === 'string') {
+        startDate = getLocalDate(startDate, "00:00", timezone);
+    }
+    if (typeof endDate === 'string') {
+        endDate = getLocalDate(endDate, "23:59", timezone);
+    }
     const eventList = await readData('events');
 
     const filteredEvents = eventList.filter(event => {

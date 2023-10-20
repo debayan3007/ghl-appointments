@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const EventsController = require('../controllers/events.controller');
-
-const eventsController = new EventsController();
-
-const { validateGetAllEvents } = require('../middlewares/dataValidation');
+const eventsController = require('../controllers/events.controller');
 
 router.get('/', eventsController.getEventsController);
 router.post('/', eventsController.createEventsController);
