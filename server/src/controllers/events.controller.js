@@ -25,12 +25,13 @@ async function createEventsController(req, res, next) {
 
 async function getFreeSlotsController(req, res, next) {
     try {
-        const {
+        let {
             date,
             timezone
         } = req.query;
 
-        console.log(date, timezone);
+        date = decodeURIComponent(date);
+        timezone = decodeURIComponent(timezone);
 
         res.json(await getFreeSlots(date, timezone));
 
