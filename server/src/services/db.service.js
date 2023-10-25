@@ -9,7 +9,6 @@ function addData(collection, path, id, doc) {
 }
 
 async function readData(collection, path) {
-    // const allEvents = await db.collection(collection).doc(path).get();
     const allEvents = await db.collection(collection).get();
 
     const docs = [];
@@ -24,18 +23,7 @@ async function readData(collection, path) {
 
 // TODO: has to be merged with readData
 async function readSingleData(collection, path) {
-    // const allEvents = await db.collection(collection).doc(path).get();
     const allEvents = await db.collection(collection).doc(path).get();
-
-    // const docs = [];
-    // allEvents.forEach((doc) => {
-    //     docs.push({
-    //         documentPath: doc.id,
-    //         ...doc.data(),
-    //     });
-    // });
-    // return docs;
-
     return allEvents;
 }
 

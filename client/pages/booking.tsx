@@ -149,6 +149,8 @@ export default function ButtonUsage() {
                             >
                                 <MenuItem value={"America/Los_Angeles"}>America/Los_Angeles</MenuItem>
                                 <MenuItem value={"Asia/Kolkata"}>Asia/Kolkata</MenuItem>
+                                <MenuItem value={"Australia/Sydney"}>Australia/Sydney</MenuItem>
+                                <MenuItem value={"Australia/Sydney"}>Europe/Belgrade</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>

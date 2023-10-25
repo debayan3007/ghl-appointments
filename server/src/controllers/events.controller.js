@@ -1,29 +1,38 @@
 const { getEvents, createEvent, getFreeSlots } = require('../services/events.service');
 
-async function getEventsController(req, res, next) {
+async function getEventsController(req, res) {
     try {
         const {
             startdate: startDate,
             enddate: endDate,
         } = req.query;
-        res.json(await getEvents(startDate, endDate));
+
+        const events = await getEvents(startDate, endDate);
+
+        res.status(200).send(events);
     } catch (err) {
-        console.error(`Error while getting events`, err.message);
-        throw new Error(err);
+        console.error(`Error while getting events ${err.message}`);
+        res.status(500).send({message: `Error while getting event. ${err.message}`});
     }
 }
 
-async function createEventsController(req, res, next) {
+async function createEventsController(req, res) {
     try {
         const event = req.body;
-        res.json(await createEvent(event));
+
+        const newEventResponse = await createEvent(event);
+        let status = 200;
+        if (newEventResponse.slotAlreadyBooked || newEventResponse.slotUnavailable) {
+            status = 422;
+        }
+        res.status(status).send(newEventResponse);
     } catch (err) {
-        console.error(`Error while creating event`, err.message);
-        throw new Error(err);
+        console.error(`Error while creating event ${err.message}`);
+        res.status(500).send({message: `Error while creating event. ${err.message}`});
     }
 }
 
-async function getFreeSlotsController(req, res, next) {
+async function getFreeSlotsController(req, res) {
     try {
         let {
             date,
@@ -33,11 +42,10 @@ async function getFreeSlotsController(req, res, next) {
         date = decodeURIComponent(date);
         timezone = decodeURIComponent(timezone);
 
-        res.json(await getFreeSlots(date, timezone));
-
+        res.send(await getFreeSlots(date, timezone));
     } catch (err) {
-        console.error(`Error while fetching free slots`, err.message)
-        throw new Error(err);
+        console.error(`Error while fetching free slots. ${err.message}`)
+        res.send(500, {message: `Error while fetching free slots. ${err.message}`});
     }
 }
 
