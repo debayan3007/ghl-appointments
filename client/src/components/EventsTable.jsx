@@ -19,8 +19,8 @@ export default function EventsTable({headers = [], rows = [{}]}) {
                 <TableCell align="right">Fat&nbsp;(g)</TableCell>
                 <TableCell align="right">Carbs&nbsp;(g)</TableCell>
                 <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
-                {headers.map(header => (
-                    <TableCell align="right">{header}</TableCell>
+                {headers.map((header, i) => (
+                    <TableCell key={`header-${i}`} align="right">{header}</TableCell>
                 ))}
                 </TableRow>
             </TableHead>
@@ -37,8 +37,8 @@ export default function EventsTable({headers = [], rows = [{}]}) {
                     <TableCell align="right">{row.fat}</TableCell>
                     <TableCell align="right">{row.carbs}</TableCell>
                     <TableCell align="right">{row.protein}</TableCell> */}
-                    {headers.map(header => (
-                    <TableCell align="right">{row[header]}</TableCell>
+                    {headers.map((header, i) => (
+                    <TableCell key={`header-${i}`} align="right">{row[header]}</TableCell>
                     ))}
                 </TableRow>
                 ))}

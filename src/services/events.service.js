@@ -92,7 +92,6 @@ async function getFreeSlots(date, timezone) {
         }
         
         const ifSlotBooked = eventTimes.every(eventTime => {
-            console.log("slot booked iteration")
             if (eventTime === currentSlot.format("HH:mm")) {
                 return true;
             }
