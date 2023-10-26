@@ -64,7 +64,7 @@ export default function ButtonUsage() {
     const bookEvent = (slot: string) => {
         console.log(`Booking event with ${date} and ${slot}`);
 
-        axios.post('http://localhost:2020/api/events', {
+        axios.post('/api/events', {
             date,
             time: slot,
             timezone: timezone,
@@ -81,7 +81,7 @@ export default function ButtonUsage() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:2020/api/events/freeslots', {
+        axios.get('/api/events/freeslots', {
             params: {
                 date,
                 timezone
@@ -99,7 +99,7 @@ export default function ButtonUsage() {
         setTimezone(event.target.value);
     }
 
-    const handleNameChange = (event: SelectChangeEvent) => setName(event.target.value);
+    const handleNameChange = (event: any) => setName(event.target.value);
     
     return (
         <>
