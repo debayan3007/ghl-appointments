@@ -15,6 +15,7 @@ import {
     SelectChangeEvent,
     Typography,
     Link,
+    InputLabel,
 }  from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -139,13 +140,29 @@ export default function ButtonUsage() {
                                     }}
                                 />
                             </LocalizationProvider>
-                            <br/>
+                            {/* <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
                             <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
+                                labelId="demo-simple-select-standard-label"
+                                // id="demo-simple-select-standard"
                                 value={timezone}
-                                label="Select Timezone"
+                                label="Timezone"
                                 onChange={handleTimezoneChange}
+                            >
+                                <MenuItem value={"America/Los_Angeles"}>America/Los_Angeles</MenuItem>
+                                <MenuItem value={"Asia/Kolkata"}>Asia/Kolkata</MenuItem>
+                                <MenuItem value={"Australia/Sydney"}>Australia/Sydney</MenuItem>
+                                <MenuItem value={"Australia/Sydney"}>Europe/Belgrade</MenuItem>
+                            </Select> */}
+                        </FormControl>
+                        <br/>
+                        <FormControl variant="standard" fullWidth>
+                            <InputLabel id="timezone-select">Timezone</InputLabel>
+                            <Select
+                                labelId="timezone-select"
+                                id="timezone-select"
+                                value={timezone}
+                                onChange={handleTimezoneChange}
+                                label="Timezone"
                             >
                                 <MenuItem value={"America/Los_Angeles"}>America/Los_Angeles</MenuItem>
                                 <MenuItem value={"Asia/Kolkata"}>Asia/Kolkata</MenuItem>

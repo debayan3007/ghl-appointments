@@ -77,7 +77,7 @@ export default function Home() {
                     />
                 </LocalizationProvider>
                 <Button onClick={getEvents} variant="outlined">Get Events</Button>
-                <Link href="/booking">Book Event</Link>
+                <Link href="/">Book Event</Link>
             </Stack>
             {events.length > 0 &&
                 <EventsTable
