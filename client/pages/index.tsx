@@ -172,7 +172,7 @@ export default function ButtonUsage() {
                         </List>
                     </Grid>
                 </Grid>
-                <Link href="/appointments">Booked Events</Link>
+                <Link href="/appointments.html">Booked Events</Link>
             </Container>
             <Dialog
                 open={open}

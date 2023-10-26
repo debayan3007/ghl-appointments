@@ -6,7 +6,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { Box, Button, Paper, Link, Stack } from '@mui/material';
-import EventsTable from '../src/components/EventsTable';
+import EventsTable from '../../src/components/EventsTable';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 
