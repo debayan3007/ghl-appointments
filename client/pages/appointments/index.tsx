@@ -26,7 +26,7 @@ export default function Home() {
     }));
 
     const getEvents = () => {
-        axios.get('/api/events', {
+        axios.get('http://localhost:2020/api/events', {
             params: {
                 startdate: startDate.format('DD/MM/YYYY'),
                 enddate: endDate.format('DD/MM/YYYY'),

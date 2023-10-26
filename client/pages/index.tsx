@@ -16,6 +16,7 @@ import {
     Typography,
     Link,
     InputLabel,
+    TextField,
 }  from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -47,7 +48,8 @@ export default function ButtonUsage() {
     const [timezone, setTimezone] = useState("Asia/Kolkata");
     const [freeSlots, setFreeslots] = useState([]);
     const [slot, setSlot] = useState('');
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState('');
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -62,16 +64,11 @@ export default function ButtonUsage() {
     const bookEvent = (slot: string) => {
         console.log(`Booking event with ${date} and ${slot}`);
 
-        console.log({
+        axios.post('http://localhost:2020/api/events', {
             date,
             time: slot,
             timezone: timezone,
-        });
-
-        axios.post('/api/events', {
-            date,
-            time: slot,
-            timezone: timezone,
+            clientName: name,
         }).then(function (response) {
             console.log(JSON.stringify(response.data));
             setSlot(slot);
@@ -84,7 +81,7 @@ export default function ButtonUsage() {
     }
 
     useEffect(() => {
-        axios.get('/api/events/freeslots', {
+        axios.get('http://localhost:2020/api/events/freeslots', {
             params: {
                 date,
                 timezone
@@ -101,6 +98,8 @@ export default function ButtonUsage() {
     const handleTimezoneChange = (event: SelectChangeEvent) => {
         setTimezone(event.target.value);
     }
+
+    const handleNameChange = (event: SelectChangeEvent) => setName(event.target.value);
     
     return (
         <>
@@ -140,19 +139,6 @@ export default function ButtonUsage() {
                                     }}
                                 />
                             </LocalizationProvider>
-                            {/* <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-standard-label"
-                                // id="demo-simple-select-standard"
-                                value={timezone}
-                                label="Timezone"
-                                onChange={handleTimezoneChange}
-                            >
-                                <MenuItem value={"America/Los_Angeles"}>America/Los_Angeles</MenuItem>
-                                <MenuItem value={"Asia/Kolkata"}>Asia/Kolkata</MenuItem>
-                                <MenuItem value={"Australia/Sydney"}>Australia/Sydney</MenuItem>
-                                <MenuItem value={"Australia/Sydney"}>Europe/Belgrade</MenuItem>
-                            </Select> */}
                         </FormControl>
                         <br/>
                         <FormControl variant="standard" fullWidth>
@@ -169,6 +155,13 @@ export default function ButtonUsage() {
                                 <MenuItem value={"Australia/Sydney"}>Australia/Sydney</MenuItem>
                                 <MenuItem value={"Australia/Sydney"}>Europe/Belgrade</MenuItem>
                             </Select>
+                            <br />
+                            <TextField
+                                label="Name"
+                                variant="standard"
+                                value={name}
+                                onChange={handleNameChange}
+                            />
                         </FormControl>
                     </Grid>
                     <Grid item xs={2}>
