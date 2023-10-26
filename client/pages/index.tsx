@@ -33,7 +33,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import dayjs from 'dayjs';
-import 'dayjs/plugin/timezone';
 
 const Container = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -98,7 +97,6 @@ export default function ButtonUsage() {
     }, [date, timezone])
 
     const handleTimezoneChange = (event: SelectChangeEvent) => {
-        dayjs.tz.setDefault(event.target.value);
         setTimezone(event.target.value);
     }
 
@@ -136,8 +134,8 @@ export default function ButtonUsage() {
                             </Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DateCalendar
-                                    disablePast={true}
-                                    // minDate={dayjs().subtract(1, 'day')}
+                                    // disablePast={true}
+                                    minDate={dayjs().subtract(1, 'day')}
                                     onChange={(value: any) => {
                                         setDate(value.format('DD/MM/YYYY'));
                                     }}
