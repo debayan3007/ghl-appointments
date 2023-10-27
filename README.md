@@ -8,9 +8,14 @@ The purpose of this tool (GHL) is to make appointment booking between people a l
 ## Setup
 
 ```bash
+Backend:
   npm install
-  npm run dev
-  cd my-project
+  npm run dev / npm start
+
+Frontend:
+  cd client
+  npm i
+  npm start / npm build
 ```
     
 ## Deployment
@@ -18,7 +23,7 @@ The purpose of this tool (GHL) is to make appointment booking between people a l
 To deploy this project run
 
 ```bash
-  npm run deploy
+  Auto deploy is enabled, pushing to master will start deployment
 ```
 
 
